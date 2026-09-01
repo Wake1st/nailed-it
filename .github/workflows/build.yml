@@ -9,7 +9,7 @@ on:
 env:
   # The itch.io project to upload to in the format `user-name/project-name`.
   # There will be no upload to itch.io if this is commented out.
-  itch_page: wake1st/colored-claws
+  itch_page: wake1st/nailed-it
 
   # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
   GODOT_VERSION: 4.3
@@ -43,7 +43,7 @@ jobs:
       image: barichello/godot-ci:4.3
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           lfs: true
       - name: Setup
@@ -57,44 +57,10 @@ jobs:
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: web-itch
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
-      # - name: Upload Artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: web-pages
-      #     path: build/web
-      # - name: Install rsync 📚
-      #   run: |
-      #     apt-get update && apt-get install -y rsync
-      # - name: Deploy to GitHub Pages 🚀
-      #   uses: JamesIves/github-pages-deploy-action@releases/v4
-      #   with:
-      #     branch: gh-pages # The branch the action should deploy to.
-      #     folder: build/web # The folder the action should deploy.
-  # build:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       platform: [HTML5]
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         lfs: true
-  #     - name: Build
-  #       id: build
-  #       uses: manleydev/build-godot-action@v1.4.1
-  #       with:
-  #         name: example
-  #         preset: ${{ matrix.platform }}
-  #         debugMode: "false"
-  #     - name: Upload Artifact
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: client-${{ matrix.platform }}
-  #         path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
   
   upload-to-itch:
     runs-on: ubuntu-latest
@@ -102,11 +68,9 @@ jobs:
       - forward-env
       - get-version
       - export-web
-    if: ${{ inputs.upload_to_itch && needs.forward-env.outputs.itch_page != '' }}
-
     steps:
       - name: Download all packages
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           pattern: web-itch
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
@@ -118,14 +82,20 @@ jobs:
           chmod +x butler
           ./butler -V
 
-      - name: Upload all packages to itch.io
+      - name: Directory Scan
+        run: ls
+
+      - name: Upload all packages to itch.io - 1
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
-        run: |
-          for channel in $(ls tmp); do
-            ./butler push \
-              --fix-permissions \
-              --userversion='${{ needs.get-version.outputs.version }}' \
-              tmp/"${channel}"/* \
-              '${{ env.itch_page }}':"${channel#package-}"
-          done
+        run: butler push tmp/"${channel}"/* '${{ env.itch_page }}':"${channel#package-}"
+
+      - name: Upload all packages to itch.io - 2
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
+        run: butler push "${channel}"/* '${{ env.itch_page }}':"${channel#package-}"
+
+      - name: Upload all packages to itch.io - 3
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
+        run: butler push "${channel}"/* ${{ env.itch_page }}:"${channel#package-}"

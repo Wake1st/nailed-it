@@ -68,8 +68,6 @@ jobs:
       - forward-env
       - get-version
       - export-web
-    if: ${{ inputs.upload_to_itch && needs.forward-env.outputs.itch_page != '' }}
-
     steps:
       - name: Download all packages
         uses: actions/download-artifact@v6

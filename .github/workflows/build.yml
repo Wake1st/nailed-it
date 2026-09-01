@@ -61,40 +61,6 @@ jobs:
         with:
           name: web-itch
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
-      # - name: Upload Artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: web-pages
-      #     path: build/web
-      # - name: Install rsync 📚
-      #   run: |
-      #     apt-get update && apt-get install -y rsync
-      # - name: Deploy to GitHub Pages 🚀
-      #   uses: JamesIves/github-pages-deploy-action@releases/v4
-      #   with:
-      #     branch: gh-pages # The branch the action should deploy to.
-      #     folder: build/web # The folder the action should deploy.
-  # build:
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       platform: [HTML5]
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         lfs: true
-  #     - name: Build
-  #       id: build
-  #       uses: manleydev/build-godot-action@v1.4.1
-  #       with:
-  #         name: example
-  #         preset: ${{ matrix.platform }}
-  #         debugMode: "false"
-  #     - name: Upload Artifact
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: client-${{ matrix.platform }}
-  #         path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
   
   upload-to-itch:
     runs-on: ubuntu-latest

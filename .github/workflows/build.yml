@@ -82,14 +82,20 @@ jobs:
           chmod +x butler
           ./butler -V
 
-      - name: Upload all packages to itch.io
+      - name: Directory Scan
+        run: ls
+
+      - name: Upload all packages to itch.io - 1
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
-        run: |
-          for channel in $(ls tmp); do
-            ./butler push \
-              --fix-permissions \
-              --userversion='${{ needs.get-version.outputs.version }}' \
-              tmp/"${channel}"/* \
-              '${{ env.itch_page }}':"${channel#package-}"
-          done
+        run: butler push tmp/"${channel}"/* '${{ env.itch_page }}':"${channel#package-}"
+
+      - name: Upload all packages to itch.io - 2
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
+        run: butler push "${channel}"/* '${{ env.itch_page }}':"${channel#package-}"
+
+      - name: Upload all packages to itch.io - 3
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
+        run: butler push "${channel}"/* ${{ env.itch_page }}:"${channel#package-}"

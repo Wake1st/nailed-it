@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cls6rm1oyvcnp"]
+[gd_scene format=3 uid="uid://cls6rm1oyvcnp"]
 
 [ext_resource type="Script" uid="uid://ddwlbcp6eawwe" path="res://ui/hud.gd" id="1_rbyyf"]
 [ext_resource type="Texture2D" uid="uid://5gwihxwfresv" path="res://assets/ui/fin.png" id="2_276te"]
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" unique_id=1845585535]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,17 +13,14 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_rbyyf")
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="." unique_id=2091071236]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -80.0
-offset_bottom = 80.0
-grow_horizontal = 0
+offset_top = 88.0
+offset_right = 80.0
+offset_bottom = 168.0
 color = Color(0.929412, 0, 0.980392, 1)
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1880745801]
 layout_mode = 0
 offset_right = 80.0
 offset_bottom = 80.0

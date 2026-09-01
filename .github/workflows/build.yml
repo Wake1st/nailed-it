@@ -9,7 +9,7 @@ on:
 env:
   # The itch.io project to upload to in the format `user-name/project-name`.
   # There will be no upload to itch.io if this is commented out.
-  itch_page: wake1st/colored-claws
+  itch_page: wake1st/nailed-it
 
   # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` below to ".".
   GODOT_VERSION: 4.3

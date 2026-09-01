@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbu0dnjn5hk6j"]
+[gd_scene format=3 uid="uid://dbu0dnjn5hk6j"]
 
 [ext_resource type="Script" uid="uid://cewxarx8scjqb" path="res://base/main.gd" id="1_3xxnu"]
 [ext_resource type="PackedScene" uid="uid://dujb3mc1m2m6y" path="res://work/work_zone.tscn" id="1_f47da"]
@@ -9,28 +9,29 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gwsun"]
 blend_mode = 3
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=1211663142]
 script = ExtResource("1_3xxnu")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=834833133]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_gwsun")
-position = Vector2(0, -208)
-scale = Vector2(8, 8)
+position = Vector2(-1, -376.00003)
+scale = Vector2(9.17, 9.17)
 texture = ExtResource("4_gwsun")
 
-[node name="WorkZone" parent="." instance=ExtResource("1_f47da")]
+[node name="WorkZone" parent="." unique_id=586985346 instance=ExtResource("1_f47da")]
 
-[node name="PopupManager" parent="." instance=ExtResource("2_f47da")]
+[node name="PopupManager" parent="." unique_id=1601650009 instance=ExtResource("2_f47da")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=34439945]
+position = Vector2(0, -60)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2127684768]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_pex66")]
+[node name="HUD" parent="CanvasLayer" unique_id=1334090520 instance=ExtResource("5_pex66")]
 unique_name_in_owner = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1338915568]
 wait_time = 1.6
 one_shot = true
 

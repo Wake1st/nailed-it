@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dujb3mc1m2m6y"]
+[gd_scene format=3 uid="uid://dujb3mc1m2m6y"]
 
 [ext_resource type="Script" uid="uid://dofaksfjn7ble" path="res://work/work_zone.gd" id="1_ax42b"]
 [ext_resource type="PackedScene" uid="uid://cqw6q088qb4dy" path="res://body/nail.tscn" id="1_yga80"]
@@ -8,75 +8,75 @@
 [ext_resource type="PackedScene" uid="uid://cgigjcg4p1130" path="res://tools/pad/pad.tscn" id="5_xq6ba"]
 [ext_resource type="PackedScene" uid="uid://ctkmsc21itg3o" path="res://tools/holder/cleaner_holder.tscn" id="7_uh7c8"]
 
-[node name="WorkZone" type="Node2D"]
+[node name="WorkZone" type="Node2D" unique_id=991644507]
 script = ExtResource("1_ax42b")
 
-[node name="Hand" type="Node2D" parent="."]
-position = Vector2(0, 43)
+[node name="Hand" type="Node2D" parent="." unique_id=1958288826]
+position = Vector2(0, 84)
 
-[node name="Nail1" parent="Hand" instance=ExtResource("1_yga80")]
+[node name="Nail1" parent="Hand" unique_id=984900113 instance=ExtResource("1_yga80")]
 unique_name_in_owner = true
 position = Vector2(-655, 78)
 rotation = -0.0463906
 
-[node name="Nail2" parent="Hand" instance=ExtResource("1_yga80")]
+[node name="Nail2" parent="Hand" unique_id=1199059713 instance=ExtResource("1_yga80")]
 unique_name_in_owner = true
 position = Vector2(-535, -15)
 rotation = -0.0231981
 
-[node name="Nail3" parent="Hand" instance=ExtResource("1_yga80")]
+[node name="Nail3" parent="Hand" unique_id=1385333545 instance=ExtResource("1_yga80")]
 unique_name_in_owner = true
 position = Vector2(-399, -37)
 rotation = -0.000822331
 
-[node name="Nail4" parent="Hand" instance=ExtResource("1_yga80")]
+[node name="Nail4" parent="Hand" unique_id=989495252 instance=ExtResource("1_yga80")]
 unique_name_in_owner = true
 position = Vector2(-273, 12)
 rotation = 0.0574279
 
-[node name="Nail5" parent="Hand" instance=ExtResource("1_yga80")]
+[node name="Nail5" parent="Hand" unique_id=1709731715 instance=ExtResource("1_yga80")]
 unique_name_in_owner = true
 position = Vector2(-131, 226)
 rotation = 0.197339
 
-[node name="Nail6" parent="Hand" instance=ExtResource("1_yga80")]
+[node name="Nail6" parent="Hand" unique_id=229505706 instance=ExtResource("1_yga80")]
 unique_name_in_owner = true
 position = Vector2(123, 240)
 rotation = -0.151426
 
-[node name="Nail7" parent="Hand" instance=ExtResource("1_yga80")]
+[node name="Nail7" parent="Hand" unique_id=1487417990 instance=ExtResource("1_yga80")]
 unique_name_in_owner = true
 position = Vector2(250, 17)
 rotation = -0.0445463
 
-[node name="Nail8" parent="Hand" instance=ExtResource("1_yga80")]
+[node name="Nail8" parent="Hand" unique_id=1675409459 instance=ExtResource("1_yga80")]
 unique_name_in_owner = true
 position = Vector2(374, -34)
 rotation = -0.00261927
 
-[node name="Nail9" parent="Hand" instance=ExtResource("1_yga80")]
+[node name="Nail9" parent="Hand" unique_id=796273424 instance=ExtResource("1_yga80")]
 unique_name_in_owner = true
 position = Vector2(516, -12)
 rotation = 0.0134414
 
-[node name="Nail10" parent="Hand" instance=ExtResource("1_yga80")]
+[node name="Nail10" parent="Hand" unique_id=974969279 instance=ExtResource("1_yga80")]
 unique_name_in_owner = true
 position = Vector2(644, 61)
 rotation = 0.0503265
 
-[node name="Selector" parent="." node_paths=PackedStringArray("holders") instance=ExtResource("3_70tq2")]
+[node name="Selector" parent="." unique_id=101506003 node_paths=PackedStringArray("holders") instance=ExtResource("3_70tq2")]
 holders = [NodePath("BrushHolder"), NodePath("CleanerHolder")]
 
-[node name="BrushHolder" parent="Selector" node_paths=PackedStringArray("tool") instance=ExtResource("5_4ofx2")]
-position = Vector2(-130, -187)
+[node name="BrushHolder" parent="Selector" unique_id=1175154817 node_paths=PackedStringArray("tool") instance=ExtResource("5_4ofx2")]
+position = Vector2(803, 20)
 tool = NodePath("Brush")
 
-[node name="Brush" parent="Selector/BrushHolder" instance=ExtResource("2_ax42b")]
+[node name="Brush" parent="Selector/BrushHolder" unique_id=513025048 instance=ExtResource("2_ax42b")]
 unique_name_in_owner = true
 
-[node name="CleanerHolder" parent="Selector" node_paths=PackedStringArray("tool") instance=ExtResource("7_uh7c8")]
-position = Vector2(162, -234)
+[node name="CleanerHolder" parent="Selector" unique_id=320502027 node_paths=PackedStringArray("tool") instance=ExtResource("7_uh7c8")]
+position = Vector2(-769, -209)
 tool = NodePath("Pad")
 
-[node name="Pad" parent="Selector/CleanerHolder" instance=ExtResource("5_xq6ba")]
+[node name="Pad" parent="Selector/CleanerHolder" unique_id=541164445 instance=ExtResource("5_xq6ba")]
 unique_name_in_owner = true
